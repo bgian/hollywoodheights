@@ -20,13 +20,13 @@ export default function HomePage() {
 
       <main className="flex min-h-dvh flex-col items-center justify-between bg-hollywood-blue px-6 py-12 text-cream sm:py-16">
         <div className="flex w-full max-w-[680px] flex-col items-center">
-          <p className="mb-5 text-center text-xl tracking-wide sm:mb-6 sm:text-2xl">
+          <p className="mb-5 text-center text-base tracking-wide sm:mb-6 sm:text-lg">
             Intimate &amp; Hidden
           </p>
 
           <Logo className="w-full max-w-[400px]" />
 
-          <p className="mt-5 text-center text-xl uppercase sm:mt-6 sm:text-2xl">
+          <p className="mt-5 text-center text-base uppercase sm:mt-6 sm:text-lg">
             Since 1983
           </p>
         </div>
