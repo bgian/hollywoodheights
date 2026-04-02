@@ -96,10 +96,15 @@
   font-display: swap;
 }
 
-@theme inline {
+@theme {
   --color-hollywood-blue: #430A03;
   --color-cream: #E7E3DC;
   --color-cream-dark: #D4D0C8;
+}
+
+@theme inline {
+  --color-hollywood-green: #118A25;
+  --color-hollywood-navy: #2625AC;
   --color-warm-white: #FCFBF9;
   --color-ink: #0A0A0A;
   --color-ink-light: #3A3A3A;

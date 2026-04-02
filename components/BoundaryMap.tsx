@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 /* ─── Street & boundary data ──────────────────────────────────────── */
 
@@ -114,22 +115,29 @@ const LABELS: Label[] = [
 
 /* ─── Color helper ────────────────────────────────────────────────── */
 
-const cream = (a: number) => `rgba(231,227,220,${a})`;
+function hexToRgb(hex: string): [number, number, number] {
+  const h = hex.replace("#", "");
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+}
 
 /* ─── Component ───────────────────────────────────────────────────── */
 
 export default function BoundaryMap() {
+  const { textHex } = useTheme();
+  const [r, g, b] = hexToRgb(textHex);
+  const fg = (a: number) => `rgba(${r},${g},${b},${a})`;
+
   const [active, setActive] = useState<string | null>(null);
   const [regionActive, setRegionActive] = useState(false);
 
   const roadStroke = (road: Road) => {
-    if (active === road.id) return cream(0.88);
-    if (active) return road.type === "boundary" ? cream(0.15) : cream(0.06);
+    if (active === road.id) return fg(0.88);
+    if (active) return road.type === "boundary" ? fg(0.15) : fg(0.06);
     return road.type === "boundary"
-      ? cream(0.38)
+      ? fg(0.38)
       : road.type === "major"
-        ? cream(0.24)
-        : cream(0.16);
+        ? fg(0.24)
+        : fg(0.16);
   };
 
   const roadWidth = (road: Road) => {
@@ -138,11 +146,11 @@ export default function BoundaryMap() {
   };
 
   const labelFill = (label: Label) => {
-    if (label.outside) return cream(active ? 0.12 : 0.32);
-    if (!label.road) return cream(active ? 0.12 : 0.35);
-    if (active === label.road) return cream(0.92);
-    if (active) return cream(0.1);
-    return cream(0.42);
+    if (label.outside) return fg(active ? 0.12 : 0.32);
+    if (!label.road) return fg(active ? 0.12 : 0.35);
+    if (active === label.road) return fg(0.92);
+    if (active) return fg(0.1);
+    return fg(0.42);
   };
 
   const streetOpacity = (id: string) => {
@@ -165,7 +173,7 @@ export default function BoundaryMap() {
           className="w-full h-auto"
           style={{ fontFamily: '"Statius", serif' }}
         >
-          <rect width="800" height="700" fill={cream(0.04)} rx="8" />
+          <rect width="800" height="700" fill={fg(0.04)} rx="8" />
 
           {/* Boundary region */}
           <path
@@ -174,8 +182,8 @@ export default function BoundaryMap() {
             data-name="Hollywood Heights"
             onClick={() => setRegionActive((v) => !v)}
             style={{
-              fill: cream(regionActive ? 0.08 : 0.025),
-              stroke: cream(regionActive ? 0.6 : 0.38),
+              fill: fg(regionActive ? 0.08 : 0.025),
+              stroke: fg(regionActive ? 0.6 : 0.38),
               strokeWidth: 1.5,
               cursor: "pointer",
               transition: `fill ${transition}, stroke ${transition}`,
@@ -242,16 +250,16 @@ export default function BoundaryMap() {
           <g transform="translate(748, 48)" style={{ pointerEvents: "none" }}>
             <line
               x1="0" y1="18" x2="0" y2="0"
-              stroke={cream(0.28)}
+              stroke={fg(0.28)}
               strokeWidth={1.2}
             />
-            <polygon points="0,-2 -3,4 3,4" fill={cream(0.28)} />
+            <polygon points="0,-2 -3,4 3,4" fill={fg(0.28)} />
             <text
               x="0" y="30"
               textAnchor="middle"
               fontSize={8}
               fontWeight={500}
-              style={{ fill: cream(0.28), letterSpacing: "0.1em" }}
+              style={{ fill: fg(0.28), letterSpacing: "0.1em" }}
             >
               N
             </text>

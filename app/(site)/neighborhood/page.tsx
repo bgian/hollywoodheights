@@ -211,7 +211,7 @@ export default function LandmarksPage() {
     <div>
       <SideTimeline items={TIMELINE_ITEMS} />
 
-      <section className="pt-32 pb-14">
+      <section className="pt-32 pb-6">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
             Neighborhood
@@ -220,7 +220,7 @@ export default function LandmarksPage() {
       </section>
 
       {/* Boundary Map */}
-      <section id="boundary-map" className="py-16 sm:py-20" style={{ scrollMarginTop: "5rem" }}>
+      <section id="boundary-map" className="pt-6 pb-16 sm:pt-8 sm:pb-20" style={{ scrollMarginTop: "5rem" }}>
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="mb-10 text-3xl font-light tracking-wide text-cream sm:text-4xl">
             Boundary Map

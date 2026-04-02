@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,7 +25,9 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#430A03" />
       </head>
-      <body className="min-h-full bg-hollywood-blue font-statius text-cream antialiased">{children}</body>
+      <body className="min-h-full bg-hollywood-blue font-statius text-cream antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

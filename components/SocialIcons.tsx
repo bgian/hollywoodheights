@@ -28,7 +28,7 @@ export function InstagramIcon({ fill = "currentColor" }: { fill?: string }) {
       </g>
       <defs>
         <clipPath id="ig-clip">
-          <rect width="20" height="20" fill="#E7E3DC" />
+          <rect width="20" height="20" fill="white" />
         </clipPath>
       </defs>
     </svg>
@@ -53,7 +53,7 @@ export function FacebookIcon({ fill = "currentColor" }: { fill?: string }) {
       </g>
       <defs>
         <clipPath id="fb-clip">
-          <rect width="20" height="20" fill="#E7E3DC" />
+          <rect width="20" height="20" fill="white" />
         </clipPath>
       </defs>
     </svg>

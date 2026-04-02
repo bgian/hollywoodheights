@@ -65,7 +65,7 @@ export default function Footer() {
               </li>
             </ul>
             <div className="mt-4">
-              <SocialIcons fill="#E7E3DC" />
+              <SocialIcons />
             </div>
           </div>
 

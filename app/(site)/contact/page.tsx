@@ -30,7 +30,7 @@ const BOARD_MEMBERS = [
 export default function ContactPage() {
   return (
     <div>
-      <section className="pt-32 pb-14">
+      <section className="pt-32 pb-6">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
             Contact
@@ -41,7 +41,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-20">
+      <section className="mx-auto max-w-4xl px-6 pt-8 pb-20">
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">

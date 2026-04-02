@@ -110,7 +110,7 @@ export default async function EventsPage() {
 
   return (
     <div>
-      <section className="pt-32 pb-14">
+      <section className="pt-32 pb-6">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
             Schedule
@@ -121,7 +121,7 @@ export default async function EventsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-6 py-20">
+      <section className="mx-auto max-w-3xl px-6 pt-8 pb-20">
         {events.length > 0 ? (
           <div className="space-y-12">
             {Array.from(grouped.entries()).map(([monthYear, monthEvents]) => (

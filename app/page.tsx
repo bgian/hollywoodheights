@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import Logo from "@/components/Logo";
 import SocialIcons from "@/components/SocialIcons";
 import SplashOverlay from "@/components/SplashOverlay";
+import ThemedIllustration from "@/components/ThemedIllustration";
 
 const NAV_LINKS = [
   { href: "/neighborhood", label: "Neighborhood" },
@@ -30,15 +30,7 @@ export default function HomePage() {
             Since 1983
           </p>
 
-          <Image
-            src="/images/illustration.png"
-            alt="Illustrated view of Hollywood Heights neighborhood architecture"
-            width={960}
-            height={810}
-            className="mx-auto mt-10 h-auto w-full max-w-[320px] sm:mt-12"
-            style={{ filter: "brightness(0) invert(1) sepia(0.15) saturate(0.5) hue-rotate(350deg) brightness(0.93)" }}
-            priority
-          />
+          <ThemedIllustration />
 
           <div className="mt-10 flex flex-col items-center gap-6 sm:mt-12 sm:gap-8">
             <nav aria-label="Main navigation">
@@ -56,7 +48,7 @@ export default function HomePage() {
               </ul>
             </nav>
 
-            <SocialIcons fill="#E7E3DC" />
+            <SocialIcons />
           </div>
         </div>
       </main>

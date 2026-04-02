@@ -3,7 +3,7 @@ interface LogoProps {
   fill?: string;
 }
 
-export default function Logo({ className = "", fill = "#E7E3DC" }: LogoProps) {
+export default function Logo({ className = "", fill = "currentColor" }: LogoProps) {
   return (
     <svg
       viewBox="0 0 1460 381"

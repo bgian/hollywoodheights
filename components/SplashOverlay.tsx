@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { useTheme } from "./ThemeProvider";
 
 const WORD_1 = "HOLLYWOOD";
 const WORD_2 = "HEIGHTS";
@@ -19,6 +20,7 @@ function shuffleIndices(count: number): number[] {
 }
 
 export default function SplashOverlay() {
+  const { hex, textHex } = useTheme();
   const [revealStep, setRevealStep] = useState(0);
   const [flashed, setFlashed] = useState(false);
   const [gone, setGone] = useState(false);
@@ -69,8 +71,8 @@ export default function SplashOverlay() {
     <div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center px-6"
       style={{
-        backgroundColor: inverted ? "#E7E3DC" : "#430A03",
-        color: inverted ? "#430A03" : "#E7E3DC",
+        backgroundColor: inverted ? textHex : hex,
+        color: inverted ? hex : textHex,
       }}
       aria-hidden="true"
     >
