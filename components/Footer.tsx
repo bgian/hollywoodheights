@@ -25,8 +25,8 @@ export default function Footer() {
             </h3>
             <ul className="flex flex-col gap-2">
               {[
-                { href: "/events", label: "Schedule" },
-                { href: "/history", label: "Culture" },
+                { href: "/schedule", label: "Schedule" },
+                { href: "/culture", label: "Culture" },
                 { href: "/contact", label: "Contact" },
                 { href: "/membership", label: "Membership" },
               ].map((link) => (

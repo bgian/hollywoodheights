@@ -48,13 +48,13 @@ interface Section {
 const SECTIONS: Section[] = [
   {
     id: "our-neighborhood",
-    title: "Our Neighborhood",
+    title: "Enter: Hollywood Heights",
     content: [
-      <>Hollywood Heights is a neighborhood in the Hollywood Hills of Los Angeles. Located in what was the northern part of the Rancho La Brea Mexican land grant in the 19th century, H.J. Whitley developed the neighborhood as early as 1902 as part of his Hollywood-Ocean View Tract. Some of our older homes can be found {intLink("/landmarks#pre-1920", "here")}.</>,
+      <>Hollywood Heights is a neighborhood in the Hollywood Hills of Los Angeles. Located in what was the northern part of the Rancho La Brea Mexican land grant in the 19th century, H.J. Whitley developed the neighborhood as early as 1902 as part of his Hollywood-Ocean View Tract. Some of our older homes can be found {intLink("/neighborhood#pre-1920", "here")}.</>,
       <>Hollywood Heights is bounded by {extLink("https://www.hollywoodbowl.com/", "The Hollywood Bowl")} on the north, {extLink("https://en.wikipedia.org/wiki/Highland_Avenue_(Los_Angeles)", "Highland Avenue")} on the east, {extLink("http://www.outpostestates.com/", "Outpost Estates")} on the west, and {extLink("https://en.wikipedia.org/wiki/Franklin_Avenue_(Los_Angeles)", "Franklin Avenue")} on the south.</>,
     ],
     images: [
-      { src: "/highland-tract-ad-1922.png", alt: "1922 Los Angeles Times advertisement for Hollywood Highland Avenue Tract — view lots from $1,500" },
+      { src: "/HighTower-1.jpg", alt: "Drawing of Hollywood Heights neighborhood by Annie Kelly — High Tower and surrounding hillside homes" },
     ],
     subsections: [
       {
@@ -75,14 +75,11 @@ const SECTIONS: Section[] = [
         paragraphs: [
           <>Home styles range from ranch to Tuscan mediterraneans, as well as a few mid-century originals by {extLink("http://www.franklloydwright.org/", "Frank Lloyd Wright")} and son {extLink("https://en.wikipedia.org/wiki/Lloyd_Wright", "Lloyd Wright")} on Broadview and Alta Loma. The most famous of these being the {extLink("https://en.wikipedia.org/wiki/Samuel_Freeman_House", "Samuel Freeman House")}.</>,
           <>The {extLink("https://en.wikipedia.org/wiki/Raymond_Chandler", "Raymond Chandler")} detective mystery {extLink("https://en.wikipedia.org/wiki/The_Long_Goodbye_(novel)", "The Long Goodbye")} was made into a {extLink("https://www.imdb.com/title/tt0070334/", "movie")} and starred {extLink("https://en.wikipedia.org/wiki/Elliott_Gould", "Elliot Gould")} as detective Phillip Marlowe with one of the High Tower Apartments, the {extLink("http://www.sahscc.org/site/index.php?function=architect_details&id=9", "Carl Kay")}{"\u2013"}designed duplex immediately adjacent to the tower.</>,
-          <>See some of the other locally filmed motion pictures in {intLink("/landmarks#filmed-here", "Hollywood Heights in Film")}.</>,
+          <>See some of the other locally filmed motion pictures in {intLink("/neighborhood#filmed-here", "Hollywood Heights in Film")}.</>,
         ],
         images: [
           { src: "/freeman-house-door.png", alt: "Samuel Freeman House — textile block entrance detail by Frank Lloyd Wright" },
           { src: "/freeman-house-window.png", alt: "Samuel Freeman House — cantilevered window overlooking the Hollywood Hills" },
-          { src: "/freeman-house-stairs.png", alt: "Samuel Freeman House — concrete stairway passage between textile block walls" },
-          { src: "/freeman-house-sketch.png", alt: "Samuel Freeman House — Frank Lloyd Wright's original perspective drawing" },
-          { src: "/freeman-house-plan.png", alt: "Samuel Freeman House — first floor plan by Frank Lloyd Wright, 1962 Glencoe Way" },
         ],
       },
       {
@@ -232,15 +229,15 @@ export default function HistoryPage() {
             ))}
 
             {section.images && section.images.length > 0 && (
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className={`mt-8 grid gap-4 ${section.images.length > 1 ? "grid-cols-2" : ""}`}>
                 {section.images.map((img) => (
                   <div key={img.src} className="overflow-hidden rounded-lg">
                     <Image
                       src={img.src}
                       alt={img.alt}
-                      width={600}
-                      height={400}
-                      className="h-auto w-full"
+                      width={960}
+                      height={640}
+                      className={section.images!.length > 1 ? "h-full w-full object-cover" : "h-auto w-full"}
                     />
                   </div>
                 ))}
@@ -260,15 +257,15 @@ export default function HistoryPage() {
                       </p>
                     ))}
                     {sub.images && sub.images.length > 0 && (
-                      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      <div className={`mt-8 grid gap-4 ${sub.images.length > 1 ? "grid-cols-2" : ""}`}>
                         {sub.images.map((img) => (
                           <div key={img.src} className="overflow-hidden rounded-lg">
                             <Image
                               src={img.src}
                               alt={img.alt}
-                              width={600}
-                              height={400}
-                              className="h-auto w-full"
+                              width={960}
+                              height={640}
+                              className={sub.images!.length > 1 ? "h-full w-full object-cover" : "h-auto w-full"}
                             />
                           </div>
                         ))}

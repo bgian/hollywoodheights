@@ -19,7 +19,7 @@ export default function MembershipPage() {
           <p className="mt-6 text-lg leading-relaxed text-cream">
             If you are a Hollywood Heights{" "}
             <Link
-              href="/landmarks#boundary-map"
+              href="/neighborhood#boundary-map"
               className="text-cream underline decoration-cream underline-offset-2 hover:decoration-cream"
             >
               resident
@@ -169,17 +169,6 @@ export default function MembershipPage() {
 
       {/* Contact CTA */}
       <section className="mx-auto max-w-4xl px-6 pb-20">
-        <div className="text-center">
-          <p className="text-sm text-cream">
-            Questions?{" "}
-            <Link
-              href="/contact"
-              className="text-cream underline decoration-cream underline-offset-2 hover:decoration-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream rounded-sm"
-            >
-              Contact us
-            </Link>
-          </p>
-        </div>
       </section>
     </div>
   );

@@ -133,7 +133,7 @@ export default async function NewsPage() {
             Looking for the Hollywood Heights View newsletter archive (1982–1995)?
           </p>
           <Link
-            href="/history#hh-view-archive"
+            href="/culture#hh-view-archive"
             className="mt-4 inline-flex items-center rounded-[10px] bg-cream px-6 py-2.5 text-xs font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90"
           >
             Browse the Archive
