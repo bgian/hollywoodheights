@@ -73,6 +73,16 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) metaTheme.setAttribute("content", tokens.bg);
+
+    const faviconSvg = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 27.8391C6.27539 27.185 6.61962 25.636 6.61962 22.6067V9.38812C6.61962 6.35886 6.37866 4.80981 6 4.15576V3.94922H11.3356V4.15576C10.957 4.80981 10.716 6.35886 10.716 9.38812V14.0697H21.284V9.38812C21.284 6.35886 21.043 4.80981 20.6644 4.15576V3.94922H26V4.15576C25.6213 4.80981 25.3804 6.35886 25.3804 9.38812V22.6067C25.3804 25.636 25.6213 27.185 26 27.8391V28.0456H20.6644V27.8391C20.9398 27.185 21.284 25.636 21.284 22.6067V17.3055H10.716V22.6067C10.716 25.636 10.957 27.185 11.3356 27.8391V28.0456H6V27.8391Z" fill="${tokens.text}"/></svg>`;
+    let favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement | null;
+    if (!favicon) {
+      favicon = document.createElement("link");
+      favicon.rel = "icon";
+      document.head.appendChild(favicon);
+    }
+    favicon.type = "image/svg+xml";
+    favicon.href = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
   }, [themeColor, mounted]);
 
   const setThemeColor = useCallback((color: ThemeColor) => {
