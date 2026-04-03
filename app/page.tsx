@@ -27,7 +27,7 @@ export default function HomePage() {
           <Logo className="w-full max-w-[400px]" />
 
           <p className="mt-5 text-center text-base uppercase sm:mt-6 sm:text-lg">
-            Since 1983
+            Since 1902
           </p>
 
           <ThemedIllustration />

@@ -109,6 +109,10 @@
   --color-ink: #0A0A0A;
   --color-ink-light: #3A3A3A;
   --font-statius: "Statius", serif;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: calc(1.35 / 0.9375);
+  --text-base: 1.0625rem;
+  --text-base--line-height: calc(1.6 / 1.0625);
 }
 
 @layer base {

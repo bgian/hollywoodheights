@@ -104,19 +104,6 @@ export default function SplashOverlay() {
           })}
         </div>
       </div>
-
-      <div
-        className={`mt-6 text-center sm:mt-8 transition-opacity duration-500 ${
-          revealStep >= TOTAL_LETTERS ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <p className="text-sm italic tracking-wide sm:text-base">
-          Intimate &amp; Hidden
-        </p>
-        <p className="mt-0 text-sm uppercase sm:text-base">
-          Since 1983
-        </p>
-      </div>
     </div>
   );
 }
