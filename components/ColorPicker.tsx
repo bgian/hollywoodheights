@@ -41,7 +41,7 @@ export default function ColorPicker() {
       </button>
 
       <div
-        className={`absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 rounded-[14px] border border-cream/18 bg-hollywood-blue p-2 origin-bottom transition-all duration-300 ${
+        className={`absolute bottom-full left-1/2 z-50 mb-2 flex w-64 -translate-x-1/2 flex-col gap-0.5 rounded-[14px] border border-cream/18 bg-hollywood-blue p-2 origin-bottom transition-all duration-300 ${
           open
             ? "scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"

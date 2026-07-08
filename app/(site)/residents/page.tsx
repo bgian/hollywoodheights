@@ -143,12 +143,9 @@ export default function HistoryPage() {
 
       <section className="pt-32 pb-6">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
+          <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
             Residents
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-cream">
-            The places, stories, and landmarks of Hollywood Heights
-          </p>
         </div>
       </section>
 

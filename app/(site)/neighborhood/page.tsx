@@ -335,7 +335,7 @@ export default function LandmarksPage() {
 
       <section className="pt-32 pb-6">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
+          <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
             Neighborhood
           </h1>
         </div>

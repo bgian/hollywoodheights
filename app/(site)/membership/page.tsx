@@ -13,8 +13,8 @@ export default function MembershipPage() {
       {/* Hero */}
       <section className="pt-32 pb-14">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
-            Hollywood Heights Association
+          <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
+            Membership
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-cream">
             If you are a Hollywood Heights{" "}
@@ -33,11 +33,28 @@ export default function MembershipPage() {
       {/* Membership Tiers */}
       <section className="mx-auto max-w-4xl px-6 pb-20">
         <div className="grid gap-8 sm:grid-cols-2">
-          <div className="rounded-[24px] border border-cream/18 bg-transparent p-10 text-center">
-            <h2 className="text-2xl font-light tracking-wide text-cream">
-              Homeowner Membership
-            </h2>
-            <p className="mt-4 text-4xl font-light text-cream">
+          <div className="rounded-[24px] bg-cream/6 p-10 text-left">
+            <div className="flex items-center gap-4">
+              <svg
+                viewBox="0 0 300 300"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="h-12 w-12 shrink-0"
+              >
+                <rect width="300" height="300" rx="60" className="fill-hollywood-blue" />
+                <path
+                  d="M75 238.943C77.0627 234.044 79.6412 222.441 79.6412 199.751V100.739C79.6412 78.049 77.8363 66.4461 75 61.5471V60H114.966V61.5471C112.129 66.4461 110.325 78.049 110.325 100.739V135.806H189.483V100.739C189.483 78.049 187.678 66.4461 184.841 61.5471V60H224.807V61.5471C221.971 66.4461 220.166 78.049 220.166 100.739V199.751C220.166 222.441 221.971 234.044 224.807 238.943V240.491H184.841V238.943C186.904 234.044 189.483 222.441 189.483 199.751V160.043H110.325V199.751C110.325 222.441 112.129 234.044 114.966 238.943V240.491H75V238.943Z"
+                  className="fill-cream"
+                />
+              </svg>
+              <h2 className="text-xl font-light leading-tight tracking-wide text-cream">
+                Homeowner
+                <br />
+                Membership
+              </h2>
+            </div>
+            <p className="mt-4 text-5xl font-light text-cream">
               $100
               <span className="text-base text-cream"> / year per household</span>
             </p>
@@ -45,17 +62,34 @@ export default function MembershipPage() {
               href="https://www.zeffy.com/en-US/ticketing/join-hollywood-heights-association"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
             >
               Join Now
             </a>
           </div>
 
-          <div className="rounded-[24px] border border-cream/18 bg-transparent p-10 text-center">
-            <h2 className="text-2xl font-light tracking-wide text-cream">
-              Renter Membership
-            </h2>
-            <p className="mt-4 text-4xl font-light text-cream">
+          <div className="rounded-[24px] bg-cream/6 p-10 text-left">
+            <div className="flex items-center gap-4">
+              <svg
+                viewBox="0 0 300 300"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="h-12 w-12 shrink-0"
+              >
+                <rect width="300" height="300" rx="60" className="fill-hollywood-blue" />
+                <path
+                  d="M75 238.943C77.0627 234.044 79.6412 222.441 79.6412 199.751V100.739C79.6412 78.049 77.8363 66.4461 75 61.5471V60H114.966V61.5471C112.129 66.4461 110.325 78.049 110.325 100.739V135.806H189.483V100.739C189.483 78.049 187.678 66.4461 184.841 61.5471V60H224.807V61.5471C221.971 66.4461 220.166 78.049 220.166 100.739V199.751C220.166 222.441 221.971 234.044 224.807 238.943V240.491H184.841V238.943C186.904 234.044 189.483 222.441 189.483 199.751V160.043H110.325V199.751C110.325 222.441 112.129 234.044 114.966 238.943V240.491H75V238.943Z"
+                  className="fill-cream"
+                />
+              </svg>
+              <h2 className="text-xl font-light leading-tight tracking-wide text-cream">
+                Renter
+                <br />
+                Membership
+              </h2>
+            </div>
+            <p className="mt-4 text-5xl font-light text-cream">
               $50
               <span className="text-base text-cream"> / year per household</span>
             </p>
@@ -63,7 +97,7 @@ export default function MembershipPage() {
               href="https://www.zeffy.com/en-US/ticketing/join-hollywood-heights-association"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
             >
               Join Now
             </a>

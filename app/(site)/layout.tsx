@@ -62,7 +62,7 @@ export default function SiteLayout({
                 rel="noopener noreferrer"
                 className="underline decoration-cream/40 underline-offset-2 transition-colors duration-200 hover:decoration-cream"
               >
-                Robert C. Giangeruso Jr.
+                Bobby Giangeruso
               </a>
               {" "}in Hollywood Heights, CA.
             </span>

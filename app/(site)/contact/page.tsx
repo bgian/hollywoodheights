@@ -32,7 +32,7 @@ export default function ContactPage() {
     <div>
       <section className="pt-32 pb-6">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="text-4xl font-light tracking-wide sm:text-5xl lg:text-6xl">
+          <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
             Contact
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-cream">
@@ -143,7 +143,7 @@ export default function ContactPage() {
                         alt={member.name}
                         width={32}
                         height={32}
-                        className="h-8 w-8 rounded-full object-cover"
+                        className="h-8 w-8 rounded-full object-cover grayscale sepia-[.35]"
                       />
                       <div>
                         <p className="text-sm font-medium text-cream">{member.name}</p>
