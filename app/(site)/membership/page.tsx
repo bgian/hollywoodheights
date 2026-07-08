@@ -42,7 +42,7 @@ export default function MembershipPage() {
               <span className="text-base text-cream"> / year per household</span>
             </p>
             <a
-              href="https://checkout.square.site/merchant/CK6390TQX6W55/checkout/I7YIKW5IGU2XG462B7IBTD6N"
+              href="https://www.zeffy.com/en-US/ticketing/join-hollywood-heights-association"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
@@ -60,7 +60,7 @@ export default function MembershipPage() {
               <span className="text-base text-cream"> / year per household</span>
             </p>
             <a
-              href="https://checkout.square.site/merchant/CK6390TQX6W55/checkout/ZXY5KDJAU5YB4V6LLDU3TRSI"
+              href="https://www.zeffy.com/en-US/ticketing/join-hollywood-heights-association"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
@@ -68,6 +68,22 @@ export default function MembershipPage() {
               Join Now
             </a>
           </div>
+        </div>
+
+        <div className="mx-auto mt-12 max-w-3xl text-center">
+          <p className="text-lg leading-relaxed text-cream">
+            You can also make a tax-deductible donation. Any amount is greatly appreciated.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-cream">
+            <a
+              href="https://www.zeffy.com/en-US/donation-form/donate-to-hollywood-heights-association"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream underline decoration-cream underline-offset-2 hover:decoration-cream"
+            >
+              Donate to Hollywood Heights Association
+            </a>
+          </p>
         </div>
       </section>
 
@@ -120,7 +136,7 @@ export default function MembershipPage() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:col-span-2">
             <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">
               Mission &amp; Objectives
             </h2>
@@ -133,36 +149,21 @@ export default function MembershipPage() {
               Moments away from the noise and glare of Hollywood Boulevard lies a fascinating
               oasis of cultural landmarks, charming iconic homes, and historic properties.
             </p>
-            <ul className="ml-4 space-y-3">
+            <ul className="space-y-4">
               {[
                 "Create opportunities for participation, enrichment, and education",
                 "Promote responsible stewardship of the neighborhood and environment",
                 "Maintain and increase property values for homeowners and businesses",
                 "Maintain and improve the quality of life of community members",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-base text-cream">
-                  <span className="mt-2 block h-1 w-1 shrink-0 rounded-full bg-cream" aria-hidden="true" />
+              ].map((item, index) => (
+                <li key={item} className="flex items-center gap-4 text-base text-cream">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cream/15 text-sm font-medium text-cream">
+                    {index + 1}
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div>
-            <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">
-              Donation
-            </h2>
-            <p className="mb-6 text-base leading-relaxed text-cream">
-              A tax deductible donation of any amount is greatly appreciated.
-            </p>
-            <a
-              href="https://www.paypal.com/donate/?hosted_button_id=TVQB8FZTN5CFW"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-[16px] bg-cream/6 px-8 py-3 text-sm font-bold uppercase text-cream transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
-            >
-              Donate
-            </a>
           </div>
         </div>
       </section>

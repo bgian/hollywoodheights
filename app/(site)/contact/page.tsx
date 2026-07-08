@@ -4,7 +4,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact the Hollywood Heights Association board of directors or sign up for our newsletter.",
+    "Sign up for the Hollywood Heights Association newsletter or contact the board of directors.",
 };
 
 const BOARD_EXECUTIVE = [
@@ -43,34 +43,45 @@ export default function ContactPage() {
 
       <section className="mx-auto max-w-4xl px-6 pt-8 pb-20">
         <div className="grid gap-16 lg:grid-cols-2">
-          <div>
+          <div id="newsletter" style={{ scrollMarginTop: "6rem" }}>
             <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">
-              Get in Touch
+              Join Newsletter
             </h2>
             <p className="mb-6 text-base leading-relaxed text-cream">
-              To contact the board of directors of the Hollywood Heights Association:
+              For the latest news about Hollywood Heights, sign up for our email newsletter.
+              We send updates on neighborhood issues, events, and community happenings.
             </p>
-            <a
-              href="mailto:info@hollywoodheights.org"
-              className="text-lg text-cream underline decoration-cream underline-offset-4 transition-colors duration-200 hover:decoration-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream rounded-sm"
-            >
-              info@hollywoodheights.org
-            </a>
 
             <form className="mt-10 space-y-5" action="https://formspree.io/f/placeholder" method="POST">
-              <div>
-                <label htmlFor="name" className="mb-1 block text-sm tracking-wider text-cream">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  autoComplete="name"
-                  required
-                  placeholder="Your name..."
-                  className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="first-name" className="mb-1 block text-sm tracking-wider text-cream">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="first_name"
+                    autoComplete="given-name"
+                    required
+                    placeholder="First name"
+                    className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="last-name" className="mb-1 block text-sm tracking-wider text-cream">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    id="last-name"
+                    name="last_name"
+                    autoComplete="family-name"
+                    required
+                    placeholder="Last name"
+                    className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
+                  />
+                </div>
               </div>
 
               <div>
@@ -89,43 +100,28 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div>
-                <label htmlFor="message" className="mb-1 block text-sm tracking-wider text-cream">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  placeholder="How can we help..."
-                  className="w-full rounded-[16px] resize-y border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
-                />
-              </div>
-
               <button
                 type="submit"
                 className="inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
               >
-                Send Letter
+                Subscribe
               </button>
             </form>
           </div>
 
           <div>
-            <div id="newsletter" style={{ scrollMarginTop: "6rem" }}>
+            <div>
               <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">
-                Newsletter
+                Get in Touch
               </h2>
-              <p className="text-base leading-relaxed text-cream">
-                For the latest news about Hollywood Heights, sign up for our email newsletter.
-                We send updates on neighborhood issues, events, and community happenings.
+              <p className="mb-4 text-base leading-relaxed text-cream">
+                To contact the board of directors of the Hollywood Heights Association:
               </p>
               <a
-                href="mailto:info@hollywoodheights.org?subject=Newsletter%20Signup"
-                className="mt-6 inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
+                href="mailto:info@hollywoodheights.org"
+                className="text-lg text-cream underline decoration-cream underline-offset-4 transition-colors duration-200 hover:decoration-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream rounded-sm"
               >
-                Sign Up
+                info@hollywoodheights.org
               </a>
             </div>
 
@@ -177,7 +173,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 pb-20">
+      <section id="unhoused-response" className="mx-auto max-w-4xl px-6 pb-20" style={{ scrollMarginTop: "6rem" }}>
         <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">
           Unhoused Response
         </h2>

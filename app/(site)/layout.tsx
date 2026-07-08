@@ -17,7 +17,7 @@ export default function SiteLayout({
       <footer className="py-8 text-center text-sm text-cream">
         <div className="mx-auto max-w-4xl px-6 flex flex-col items-center gap-6">
           <a
-            href="https://hollywoodheights.org/wp-content/uploads/2025/05/1990-Vol-9-Issue-2.pdf"
+            href="/newsletters/1990-Vol-9-Issue-2.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group block"
@@ -34,13 +34,19 @@ export default function SiteLayout({
             <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-4">
               <span>&copy; {new Date().getFullYear()} Hollywood Heights Association</span>
               <a
-                href="https://hollywoodheights.org/wp-content/uploads/2025/06/HHA-Bylaws-2025.pdf"
+                href="/documents/HHA-Bylaws-2025.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline decoration-cream/40 underline-offset-2 transition-colors duration-200 hover:decoration-cream"
               >
                 Bylaws
               </a>
+              <Link
+                href="/emergency"
+                className="underline decoration-cream/40 underline-offset-2 transition-colors duration-200 hover:decoration-cream"
+              >
+                Emergency
+              </Link>
             </div>
             <span className="text-sm text-cream">
               Designed by{" "}
