@@ -11,20 +11,20 @@ const BOARD_EXECUTIVE = [
   { name: "Lesley Holmes", role: "President", email: "president@hollywoodheights.org", photo: "/assets/board/lesley-holmes.png" },
   { name: "Kelly O\u2019Brien", role: "Vice President", email: "vp@hollywoodheights.org", photo: "/assets/board/kelly-obrien.png" },
   { name: "Scott Peake", role: "Co-Treasurer", email: "treasurer@hollywoodheights.org", photo: "/assets/board/scott-peake.png" },
-  { name: "Richard Trenz", role: "Co-Treasurer", email: "treasurer@hollywoodheights.org", photo: "/assets/board/richard-trenz.png" },
   { name: "Tim Grant", role: "Secretary", email: "bod@hollywoodheights.org", photo: "/assets/board/tim-grant.png" },
 ] as const;
 
 const BOARD_MEMBERS = [
-  "Fredrica Cooper",
   "Joyce Dyrector",
   "Rick Foulkes",
   "Stef Garden",
+  "Bobby Giangeruso",
   "Che Johnson",
   "Richard Loyd",
   "Paul Norling",
   "Nicola Phillips",
   "Bronni Stein",
+  "Luke Walker",
 ];
 
 export default function ContactPage() {
