@@ -69,15 +69,6 @@ export default function LapdTrespassingPage() {
       </section>
 
       <section className="mx-auto max-w-3xl px-6 pt-8 pb-24">
-        <div className="mb-12 rounded-[24px] border border-cream/18 p-8 text-center">
-          <p className="text-xs tracking-[0.15em] uppercase text-cream/60">No Trespassing Sign</p>
-          <p className="mt-4 text-2xl font-light tracking-wide text-cream">
-            This Property Closed to the Public
-          </p>
-          <p className="mt-2 text-lg font-light text-cream">No Entry Without Permission</p>
-          <p className="mt-4 text-xs tracking-[0.2em] uppercase text-cream/60">L.A.M.C. Sec. 41.24</p>
-        </div>
-
         <div className="space-y-6">
           {STEPS.map((step) => (
             <div key={step.n} className="rounded-[24px] border border-cream/18 p-8">
@@ -103,7 +94,7 @@ export default function LapdTrespassingPage() {
                     href="https://www.zeffy.com/en-US/ticketing/hollywood-heights-associations-shop"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center rounded-[10px] bg-cream px-4 py-2 text-xs font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90"
+                    className="inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3.5 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
                   >
                     Buy a No Trespassing Sign
                   </a>

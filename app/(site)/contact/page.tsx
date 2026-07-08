@@ -95,7 +95,7 @@ export default function ContactPage() {
                   autoComplete="email"
                   required
                   spellCheck={false}
-                  placeholder="you@example.com"
+                  placeholder="your@email.com"
                   className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
                 />
               </div>
