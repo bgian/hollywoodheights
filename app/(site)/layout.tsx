@@ -47,6 +47,12 @@ export default function SiteLayout({
               >
                 Emergency
               </Link>
+              <Link
+                href="/lapd-trespassing-arrest-authorization"
+                className="underline decoration-cream/40 underline-offset-2 transition-colors duration-200 hover:decoration-cream"
+              >
+                LAPD Trespassing
+              </Link>
             </div>
             <span className="text-sm text-cream">
               Designed by{" "}

@@ -5,13 +5,29 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
-const NAV_LINKS = [
+interface NavLink {
+  href: string;
+  label: string;
+  sections?: { href: string; label: string }[];
+}
+
+const NAV_LINKS: NavLink[] = [
   { href: "/neighborhood", label: "Neighborhood" },
-  { href: "/residents", label: "Residents" },
+  {
+    href: "/residents",
+    label: "Residents",
+    sections: [
+      { href: "/residents#hollywood-bowl", label: "Hollywood Bowl" },
+      { href: "/residents#pinehurst-park", label: "Pinehurst Park" },
+      { href: "/residents#hiho-pets", label: "HiHo Community Pet Network" },
+      { href: "/residents#unhoused-response", label: "Unhoused Response" },
+      { href: "/residents#emergency", label: "Emergency" },
+    ],
+  },
   { href: "/schedule", label: "Schedule" },
   { href: "/contact", label: "Contact" },
   { href: "/membership", label: "Membership" },
-] as const;
+];
 
 export default function Header() {
   const pathname = usePathname();
@@ -58,7 +74,7 @@ export default function Header() {
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
               return (
-                <li key={link.href}>
+                <li key={link.href} className="group relative">
                   <Link
                     href={link.href}
                     className={`text-sm font-bold uppercase text-cream transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue rounded-sm ${
@@ -67,6 +83,22 @@ export default function Header() {
                   >
                     {link.label}
                   </Link>
+                  {link.sections && (
+                    <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      <ul className="min-w-[240px] rounded-[14px] border border-cream/18 bg-hollywood-blue p-2">
+                        {link.sections.map((section) => (
+                          <li key={section.href}>
+                            <Link
+                              href={section.href}
+                              className="block rounded-[8px] px-3 py-2 text-xs font-bold uppercase tracking-wide text-cream/75 transition-colors duration-150 hover:bg-cream/10 hover:text-cream focus-visible:outline-none focus-visible:bg-cream/10 focus-visible:text-cream"
+                            >
+                              {section.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </li>
               );
             })}
@@ -111,7 +143,7 @@ export default function Header() {
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
               return (
-                <li key={link.href}>
+                <li key={link.href} className="flex flex-col items-center gap-3">
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
@@ -121,6 +153,21 @@ export default function Header() {
                   >
                     {link.label}
                   </Link>
+                  {link.sections && (
+                    <ul className="flex flex-col items-center gap-2">
+                      {link.sections.map((section) => (
+                        <li key={section.href}>
+                          <Link
+                            href={section.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="text-sm font-bold uppercase tracking-wide text-cream/70 transition-opacity duration-200 hover:text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream rounded-sm"
+                          >
+                            {section.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               );
             })}

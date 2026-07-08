@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/unhoused-response",
-        destination: "/contact#unhoused-response",
+        destination: "/residents#unhoused-response",
         permanent: false,
       },
       {
