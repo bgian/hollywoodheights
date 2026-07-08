@@ -41,13 +41,12 @@ export default function ColorPicker() {
       </button>
 
       <div
-        className={`absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 overflow-hidden rounded-[16px] backdrop-blur-md shadow-xl origin-bottom transition-all duration-300 ${
+        className={`absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 rounded-[14px] border border-cream/18 bg-hollywood-blue p-2 origin-bottom transition-all duration-300 ${
           open
             ? "scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"
         }`}
         style={{
-          backgroundColor: `color-mix(in srgb, ${current.hex} 25%, rgba(0,0,0,0.8))`,
           transitionTimingFunction: open
             ? "cubic-bezier(0.34, 1.56, 0.64, 1)"
             : "cubic-bezier(0.4, 0, 0.2, 1)",
@@ -62,10 +61,10 @@ export default function ColorPicker() {
               setThemeColor(option.value);
               setOpen(false);
             }}
-            className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-xs font-bold uppercase transition-opacity duration-150 ${
+            className={`flex w-full items-center gap-3 rounded-[8px] px-3 py-2 text-left text-xs font-bold uppercase tracking-wide transition-colors duration-150 ${
               themeColor === option.value
-                ? "bg-white/10 text-white"
-                : "text-white/60 hover:bg-white/5 hover:text-white"
+                ? "bg-cream/10 text-cream"
+                : "text-cream/75 hover:bg-cream/10 hover:text-cream"
             }`}
           >
             <span
@@ -75,7 +74,7 @@ export default function ColorPicker() {
             <span>{option.label}</span>
             {themeColor === option.value && (
               <svg
-                className="ml-auto h-3.5 w-3.5 text-white/80"
+                className="ml-auto h-3.5 w-3.5 text-cream"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

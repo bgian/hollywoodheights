@@ -42,13 +42,13 @@ export default function SiteLayout({
                 Bylaws
               </a>
               <Link
-                href="/emergency"
+                href="/residents#emergency"
                 className="underline decoration-cream/40 underline-offset-2 transition-colors duration-200 hover:decoration-cream"
               >
                 Emergency
               </Link>
               <Link
-                href="/lapd-trespassing-arrest-authorization"
+                href="/residents#lapd-trespassing"
                 className="underline decoration-cream/40 underline-offset-2 transition-colors duration-200 hover:decoration-cream"
               >
                 LAPD Trespassing

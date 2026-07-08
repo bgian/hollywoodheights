@@ -29,7 +29,7 @@ export default function Footer() {
                 { href: "/residents", label: "Residents" },
                 { href: "/contact", label: "Contact" },
                 { href: "/membership", label: "Membership" },
-                { href: "/emergency", label: "Emergency" },
+                { href: "/residents#emergency", label: "Emergency" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link

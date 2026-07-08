@@ -22,6 +22,7 @@ const NAV_LINKS: NavLink[] = [
       { href: "/residents#hiho-pets", label: "HiHo Community Pet Network" },
       { href: "/residents#unhoused-response", label: "Unhoused Response" },
       { href: "/residents#emergency", label: "Emergency" },
+      { href: "/residents#lapd-trespassing", label: "LAPD Trespassing" },
     ],
   },
   { href: "/schedule", label: "Schedule" },

@@ -32,6 +32,16 @@ const nextConfig: NextConfig = {
         destination: "/residents#hiho-pets",
         permanent: false,
       },
+      {
+        source: "/lapd-trespassing-arrest-authorization",
+        destination: "/residents#lapd-trespassing",
+        permanent: true,
+      },
+      {
+        source: "/emergency",
+        destination: "/residents#emergency",
+        permanent: true,
+      },
     ];
   },
 };
