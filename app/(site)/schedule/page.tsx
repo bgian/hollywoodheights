@@ -24,7 +24,7 @@ export default async function EventsPage() {
       </section>
 
       {events.length > 0 ? (
-        <section className="mx-auto max-w-4xl px-6 pb-24">
+        <section className="w-full px-8 pb-24">
           <EventsCalendar events={events} />
         </section>
       ) : (

@@ -79,9 +79,13 @@ function EventDetail({ event }: { event: CalendarEvent }) {
 
   return (
     <div className="border-b border-cream/12 py-3 last:border-0 last:pb-1">
-      {event.source === "bowl" && (
+      {event.source === "bowl" ? (
         <p className="mb-1.5 inline-block rounded-full border border-cream/30 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.15em] uppercase text-cream/80">
           Hollywood Bowl
+        </p>
+      ) : (
+        <p className="mb-1.5 inline-block rounded-full bg-cream px-2.5 py-0.5 text-[10px] font-bold tracking-[0.15em] uppercase text-hollywood-blue">
+          Neighborhood
         </p>
       )}
       <h4 className="text-sm font-medium text-cream">{event.summary}</h4>
@@ -131,13 +135,34 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
     bowl: true,
   });
 
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   const rootRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
 
   const toggleSource = (source: CalendarSource) => {
     setPopover(null);
     setVisibleSources((current) => ({ ...current, [source]: !current[source] }));
   };
+
+  useEffect(() => {
+    if (!filtersOpen) return;
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (!filtersRef.current?.contains(e.target as Node)) setFiltersOpen(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFiltersOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [filtersOpen]);
 
   const eventsByDay = useMemo(() => {
     const map = new Map<string, CalendarEvent[]>();
@@ -180,13 +205,10 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
     });
   };
 
-  // Anchor the popover below the clicked day cell, clamped to the
-  // calendar's width (like the nav dropdown, but position varies per day).
-  const toggleDay = (key: string, target: HTMLElement) => {
-    if (popover?.day === key) {
-      setPopover(null);
-      return;
-    }
+  // Anchor the popover below the day cell, clamped to the calendar's
+  // width (like the nav dropdown, but position varies per day).
+  const openDay = (key: string, target: HTMLElement) => {
+    if (popover?.day === key) return;
 
     const cell = target.closest("[data-day]");
     const root = rootRef.current;
@@ -206,6 +228,14 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
       top: cellRect.bottom - rootRect.top + 6,
       left,
     });
+  };
+
+  const toggleDay = (key: string, target: HTMLElement) => {
+    if (popover?.day === key) {
+      setPopover(null);
+    } else {
+      openDay(key, target);
+    }
   };
 
   useEffect(() => {
@@ -243,15 +273,92 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
               setPopover(null);
               setView({ year: todayYear, monthIndex: todayMonth - 1 });
             }}
-            className="rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:bg-cream/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            className="rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
           >
             Today
           </button>
+
+          <div ref={filtersRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setFiltersOpen((open) => !open)}
+              aria-expanded={filtersOpen}
+              aria-haspopup="true"
+              className="flex items-center gap-2 rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            >
+              Calendars
+              <svg
+                viewBox="0 0 10 6"
+                aria-hidden="true"
+                className={`h-1.5 w-2.5 transition-transform duration-150 ${
+                  filtersOpen ? "rotate-180" : ""
+                }`}
+              >
+                <path
+                  d="M1 1 5 5 9 1"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            <div
+              className={`absolute right-0 top-full z-50 mt-2 min-w-[220px] origin-top rounded-[14px] border border-cream/18 bg-hollywood-blue p-2 transition-all duration-300 ${
+                filtersOpen ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
+              }`}
+              style={{
+                transitionTimingFunction: filtersOpen
+                  ? "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                  : "cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+            >
+                <button
+                  type="button"
+                  tabIndex={filtersOpen ? 0 : -1}
+                  onClick={() => toggleSource("hha")}
+                  aria-pressed={visibleSources.hha}
+                  className="flex w-full items-center gap-3 rounded-[8px] px-3 py-2 text-xs text-cream transition-colors duration-150 hover:bg-cream/10 focus-visible:outline-none focus-visible:bg-cream/10"
+                >
+                  <span
+                    className={`inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-[4px] ${
+                      visibleSources.hha ? "bg-cream" : "border border-cream/40"
+                    }`}
+                  >
+                    {visibleSources.hha && (
+                      <svg viewBox="0 0 10 10" className="h-2.5 w-2.5 text-hollywood-blue" aria-hidden="true">
+                        <path d="M1.5 5.5 4 8 8.5 2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </span>
+                  Neighborhood
+                </button>
+                <button
+                  type="button"
+                  tabIndex={filtersOpen ? 0 : -1}
+                  onClick={() => toggleSource("bowl")}
+                  aria-pressed={visibleSources.bowl}
+                  className="flex w-full items-center gap-3 rounded-[8px] px-3 py-2 text-xs text-cream transition-colors duration-150 hover:bg-cream/10 focus-visible:outline-none focus-visible:bg-cream/10"
+                >
+                  <span className="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-[4px] border border-cream/40">
+                    {visibleSources.bowl && (
+                      <svg viewBox="0 0 10 10" className="h-2.5 w-2.5 text-cream" aria-hidden="true">
+                        <path d="M1.5 5.5 4 8 8.5 2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </span>
+                  Hollywood Bowl
+                </button>
+            </div>
+          </div>
+
           <button
             type="button"
             onClick={() => changeMonth(-1)}
             aria-label="Previous month"
-            className="rounded-[10px] border border-cream/30 px-3 py-1.5 transition-colors duration-150 hover:bg-cream/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            className="rounded-[10px] border border-cream/30 px-3 py-1.5 transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
           >
             <ArrowIcon src="/left-arrow.svg" />
           </button>
@@ -259,7 +366,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
             type="button"
             onClick={() => changeMonth(1)}
             aria-label="Next month"
-            className="rounded-[10px] border border-cream/30 px-3 py-1.5 transition-colors duration-150 hover:bg-cream/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            className="rounded-[10px] border border-cream/30 px-3 py-1.5 transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
           >
             <ArrowIcon src="/right-arrow.svg" />
           </button>
@@ -267,6 +374,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
       </div>
 
       <div className="overflow-hidden rounded-[24px] border border-cream/18">
+        {/* One flat grid so every hairline is an identical 1px gap. */}
         <div className="grid grid-cols-7 gap-px bg-cream/18">
           {WEEKDAY_LABELS.map((label) => (
             <div
@@ -276,16 +384,10 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
               {label}
             </div>
           ))}
-        </div>
 
-        {weeks.map((week, weekIdx) => (
-          <div
-            key={weekIdx}
-            className="grid grid-cols-7 gap-px border-t border-cream/18 bg-cream/18"
-          >
-            {week.map((day, dayIdx) => {
+          {weeks.flat().map((day, cellIdx) => {
               if (day === null) {
-                return <div key={`blank-${dayIdx}`} className="bg-hollywood-blue" />;
+                return <div key={`blank-${cellIdx}`} className="bg-hollywood-blue" />;
               }
 
               const key = cellKey(view.year, view.monthIndex, day);
@@ -327,7 +429,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
                         onClick={(e) => toggleDay(key, e.currentTarget)}
                         aria-expanded={isSelected}
                         title={event.summary}
-                        className={`block w-full truncate rounded-[6px] px-1.5 py-0.5 text-left text-[10px] leading-tight transition-opacity duration-150 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cream ${
+                        className={`block w-full truncate rounded-[8px] px-2 py-1 text-left text-xs leading-tight transition-opacity duration-150 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cream ${
                           event.source === "hha"
                             ? "bg-cream font-bold text-hollywood-blue"
                             : "border border-cream/30 text-cream/80"
@@ -341,7 +443,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
                         type="button"
                         onClick={(e) => toggleDay(key, e.currentTarget)}
                         aria-expanded={isSelected}
-                        className="block w-full px-1.5 text-left text-[10px] text-cream/60 transition-colors duration-150 hover:text-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cream"
+                        className="block w-full px-2 text-left text-xs text-cream/60 transition-colors duration-150 hover:text-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cream"
                       >
                         +{overflow} more
                       </button>
@@ -350,8 +452,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
                 </div>
               );
             })}
-          </div>
-        ))}
+        </div>
       </div>
 
       {popover && popoverDate && (
@@ -362,11 +463,12 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
             month: "long",
             day: "numeric",
           })}`}
-          className="absolute z-50 rounded-[14px] border border-cream/18 bg-hollywood-blue p-4"
+          className="absolute z-50 origin-top rounded-[14px] border border-cream/18 bg-hollywood-blue p-4"
           style={{
             top: popover.top,
             left: popover.left,
             width: `min(${POPOVER_WIDTH}px, calc(100% - ${POPOVER_MARGIN * 2}px))`,
+            animation: "dropdown-in 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
           }}
         >
           <div className="flex items-start justify-between gap-4">
@@ -395,47 +497,6 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
         </div>
       )}
 
-      <div className="mt-4 flex items-center gap-4">
-        <button
-          type="button"
-          onClick={() => toggleSource("hha")}
-          aria-pressed={visibleSources.hha}
-          className={`flex items-center gap-2 rounded-[10px] px-3 py-1.5 text-xs transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream ${
-            visibleSources.hha ? "text-cream" : "text-cream/40 line-through opacity-60"
-          }`}
-        >
-          <span
-            className={`inline-flex h-3.5 w-3.5 items-center justify-center rounded-[4px] ${
-              visibleSources.hha ? "bg-cream" : "border border-cream/40"
-            }`}
-          >
-            {visibleSources.hha && (
-              <svg viewBox="0 0 10 10" className="h-2.5 w-2.5 text-hollywood-blue" aria-hidden="true">
-                <path d="M1.5 5.5 4 8 8.5 2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            )}
-          </span>
-          Neighborhood
-        </button>
-
-        <button
-          type="button"
-          onClick={() => toggleSource("bowl")}
-          aria-pressed={visibleSources.bowl}
-          className={`flex items-center gap-2 rounded-[10px] px-3 py-1.5 text-xs transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream ${
-            visibleSources.bowl ? "text-cream" : "text-cream/40 line-through opacity-60"
-          }`}
-        >
-          <span className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-[4px] border border-cream/40">
-            {visibleSources.bowl && (
-              <svg viewBox="0 0 10 10" className="h-2.5 w-2.5 text-cream" aria-hidden="true">
-                <path d="M1.5 5.5 4 8 8.5 2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            )}
-          </span>
-          Hollywood Bowl
-        </button>
-      </div>
     </div>
   );
 }

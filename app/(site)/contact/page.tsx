@@ -38,8 +38,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 pt-8 pb-20">
-        <div className="grid gap-16 lg:grid-cols-2">
+      <section className="mx-auto max-w-3xl px-6 pt-8 pb-20">
+        <div className="grid gap-16">
           <div id="newsletter" style={{ scrollMarginTop: "6rem" }}>
             <h2 className="mb-6 text-2xl font-light tracking-wide text-cream">
               Join Newsletter
