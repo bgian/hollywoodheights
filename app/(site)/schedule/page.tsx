@@ -10,6 +10,19 @@ export const metadata: Metadata = {
 
 export const revalidate = 900; // 15 minutes
 
+// webcal:// opens the user's calendar app and subscribes (auto-updating),
+// instead of downloading a one-time .ics snapshot over https.
+const CALENDAR_SUBSCRIPTIONS = [
+  {
+    label: "Add Neighborhood Calendar",
+    href: "webcal://calendar.google.com/calendar/ical/hollywood.heights.association%40gmail.com/public/basic.ics",
+  },
+  {
+    label: "Add Hollywood Bowl Calendar",
+    href: "webcal://calendar.google.com/calendar/ical/hollywoodbowlnews%40hollywoodbowl.com/public/basic.ics",
+  },
+] as const;
+
 export default async function EventsPage() {
   const events = await getCalendarEvents();
 
@@ -26,6 +39,29 @@ export default async function EventsPage() {
       {events.length > 0 ? (
         <section className="w-full px-8 pb-24">
           <EventsCalendar events={events} />
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            {CALENDAR_SUBSCRIPTIONS.map((cal) => (
+              <a
+                key={cal.label}
+                href={cal.href}
+                className="rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+              >
+                {cal.label}
+              </a>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-sm text-cream">
+            For Hollywood Boulevard street closures,{" "}
+            <a
+              href="https://hollywoodpartnership.com/alerts"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-cream underline-offset-4 transition-colors duration-200 hover:decoration-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream rounded-sm"
+            >
+              click here
+            </a>
+            .
+          </p>
         </section>
       ) : (
         <section className="mx-auto max-w-3xl px-6 pb-24">
