@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Suspense } from "react";
-import PastNewsletters from "@/components/PastNewsletters";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -124,10 +122,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      <Suspense fallback={null}>
-        <PastNewsletters />
-      </Suspense>
 
     </div>
   );
