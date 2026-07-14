@@ -16,15 +16,15 @@ const BOARD_EXECUTIVE = [
 
 const BOARD_MEMBERS = [
   "Bobby Giangeruso",
+  "Bronni Stein",
+  "Che Johnson",
   "Joyce Dyrector",
+  "Luke Walker",
+  "Nicola Phillips",
+  "Paul Norling",
+  "Richard Loyd",
   "Rick Foulkes",
   "Stef Garden",
-  "Che Johnson",
-  "Richard Loyd",
-  "Paul Norling",
-  "Nicola Phillips",
-  "Bronni Stein",
-  "Luke Walker",
 ];
 
 export default function ContactPage() {
@@ -38,7 +38,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section id="newsletter" className="py-16 sm:py-20" style={{ scrollMarginTop: "6rem" }}>
+      <section id="newsletter" className="py-10 sm:py-12" style={{ scrollMarginTop: "6rem" }}>
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="mb-8 text-2xl font-light tracking-wide text-cream sm:text-3xl">
             Join Newsletter
@@ -59,7 +59,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="mb-8 text-2xl font-light tracking-wide text-cream sm:text-3xl">
             Get in Touch
@@ -76,7 +76,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-16 pb-24 sm:py-20 sm:pb-28">
+      <section className="py-10 pb-24 sm:py-12 sm:pb-28">
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="mb-8 text-2xl font-light tracking-wide text-cream sm:text-3xl">
             Board of Directors
