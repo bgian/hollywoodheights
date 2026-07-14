@@ -27,6 +27,20 @@ Open [http://localhost:3000](http://localhost:3000).
 |---|---|
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID |
 | `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset (default: `production`) |
+| `SANITY_API_WRITE_TOKEN` | Sanity token with write access (stores rotating Constant Contact OAuth tokens) |
+| `CONSTANT_CONTACT_CLIENT_ID` | Constant Contact developer app API key |
+| `CONSTANT_CONTACT_CLIENT_SECRET` | Constant Contact developer app secret |
+
+## Constant Contact Setup
+
+Newsletter signup on the Contact page links out to a [Constant Contact hosted landing page](https://lp.constantcontactpages.com/sl/fIheEaU), so it needs no configuration. The "Past Newsletters" section uses the Constant Contact v3 API:
+
+1. Create an application in the [Constant Contact developer portal](https://app.constantcontact.com/pages/dma/portal/) using the **Authorization Code Flow**, with `http://localhost:8976/callback` as the redirect URI. Copy the API key and secret into `.env.local`.
+2. Create a Sanity token with **Editor** access at [sanity.io/manage](https://www.sanity.io/manage) and set it as `SANITY_API_WRITE_TOKEN`. Constant Contact refresh tokens are single-use, so the current token set is persisted in a Sanity document (`private.constantContactAuth`) that the app rotates automatically. The `private.` ID prefix means it can only be read with an authenticated token, and the type is not registered in the Studio schema, so it never appears in the Studio UI.
+3. Run `npm run cc:auth` and log in as the association's Constant Contact account to authorize the app. This stores the initial tokens in Sanity.
+4. Set all three variables in Vercel as well. The one-time `cc:auth` step does not need to be repeated for deployments since tokens live in Sanity.
+
+Past newsletters are pulled from sent campaigns (with their permanent web-version links) and cached for one hour. If Constant Contact is unreachable or unconfigured, the section is simply hidden.
 
 ## Sanity CMS Setup
 

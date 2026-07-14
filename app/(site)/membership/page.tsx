@@ -11,7 +11,7 @@ export default function MembershipPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="pt-32 pb-14">
+      <section className="pt-40 pb-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
             Membership

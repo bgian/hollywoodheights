@@ -1,5 +1,6 @@
-const CALENDAR_URL =
-  "https://calendar.google.com/calendar/ical/hollywood.heights.association%40gmail.com/public/basic.ics";
+import ical, { type VEvent } from "node-ical";
+
+export type CalendarSource = "hha" | "bowl";
 
 export interface CalendarEvent {
   uid: string;
@@ -8,119 +9,87 @@ export interface CalendarEvent {
   location?: string;
   start: Date;
   end?: Date;
+  isFullDay: boolean;
+  source: CalendarSource;
 }
 
-function parseICSDate(dateStr: string): Date {
-  // ICS dates can be YYYYMMDD or YYYYMMDDTHHmmssZ or YYYYMMDDTHHMMSS
-  const cleaned = dateStr.replace(/[^0-9TZ]/g, "");
+interface Feed {
+  source: CalendarSource;
+  url: string;
+  /** How far ahead to expand events, in days. */
+  windowDays: number;
+}
 
-  if (cleaned.length === 8) {
-    const year = parseInt(cleaned.slice(0, 4));
-    const month = parseInt(cleaned.slice(4, 6)) - 1;
-    const day = parseInt(cleaned.slice(6, 8));
-    return new Date(year, month, day);
+const FEEDS: Feed[] = [
+  {
+    source: "hha",
+    url: "https://calendar.google.com/calendar/ical/hollywood.heights.association%40gmail.com/public/basic.ics",
+    windowDays: 180,
+  },
+  {
+    // Shorter window than HHA: the Bowl has a concert nearly every night in
+    // season, but 90 days keeps the month-grid calendar useful ahead.
+    source: "bowl",
+    url: "https://calendar.google.com/calendar/ical/hollywoodbowlnews%40hollywoodbowl.com/public/basic.ics",
+    windowDays: 90,
+  },
+];
+
+const REVALIDATE_SECONDS = 900; // 15 minutes
+
+/** node-ical values may be plain strings or { params, val } objects. */
+function asString(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object" && "val" in value) {
+    return String((value as { val: unknown }).val);
   }
-
-  const year = parseInt(cleaned.slice(0, 4));
-  const month = parseInt(cleaned.slice(4, 6)) - 1;
-  const day = parseInt(cleaned.slice(6, 8));
-  const hour = parseInt(cleaned.slice(9, 11)) || 0;
-  const minute = parseInt(cleaned.slice(11, 13)) || 0;
-  const second = parseInt(cleaned.slice(13, 15)) || 0;
-
-  if (cleaned.endsWith("Z")) {
-    return new Date(Date.UTC(year, month, day, hour, minute, second));
-  }
-
-  return new Date(year, month, day, hour, minute, second);
+  return "";
 }
 
-function unfoldICS(text: string): string {
-  return text.replace(/\r?\n[ \t]/g, "");
-}
-
-function unescapeICSValue(value: string): string {
-  return value
-    .replace(/\\n/g, "\n")
-    .replace(/\\,/g, ",")
-    .replace(/\\;/g, ";")
-    .replace(/\\\\/g, "\\");
-}
-
-export async function getCalendarEvents(): Promise<CalendarEvent[]> {
+async function fetchFeed(feed: Feed): Promise<CalendarEvent[]> {
   try {
-    const res = await fetch(CALENDAR_URL, {
-      next: { revalidate: 900 }, // 15 minutes
+    const res = await fetch(feed.url, {
+      next: { revalidate: REVALIDATE_SECONDS },
     });
-
     if (!res.ok) return [];
 
-    const icsText = unfoldICS(await res.text());
+    const parsed = ical.sync.parseICS(await res.text());
+    const from = new Date();
+    const to = new Date(from.getTime() + feed.windowDays * 24 * 60 * 60 * 1000);
+
     const events: CalendarEvent[] = [];
+    for (const component of Object.values(parsed)) {
+      if (!component || component.type !== "VEVENT") continue;
+      const vevent = component as VEvent;
 
-    const eventBlocks = icsText.split("BEGIN:VEVENT");
-
-    for (let i = 1; i < eventBlocks.length; i++) {
-      const block = eventBlocks[i].split("END:VEVENT")[0];
-      const lines = block.split(/\r?\n/);
-
-      let uid = "";
-      let summary = "";
-      let description = "";
-      let location = "";
-      let startStr = "";
-      let endStr = "";
-
-      for (const line of lines) {
-        const colonIndex = line.indexOf(":");
-        if (colonIndex === -1) continue;
-
-        const key = line.slice(0, colonIndex);
-        const value = unescapeICSValue(line.slice(colonIndex + 1));
-        const baseKey = key.split(";")[0];
-
-        switch (baseKey) {
-          case "UID":
-            uid = value;
-            break;
-          case "SUMMARY":
-            summary = value;
-            break;
-          case "DESCRIPTION":
-            description = value;
-            break;
-          case "LOCATION":
-            location = value;
-            break;
-          case "DTSTART":
-            startStr = value;
-            break;
-          case "DTEND":
-            endStr = value;
-            break;
-        }
-      }
-
-      if (summary && startStr) {
-        const start = parseICSDate(startStr);
-        const end = endStr ? parseICSDate(endStr) : undefined;
+      // Expands RRULEs (honoring EXDATE and RECURRENCE-ID overrides) and
+      // passes single events through unchanged.
+      for (const instance of ical.expandRecurringEvent(vevent, { from, to })) {
+        const summary = asString(instance.summary);
+        if (!summary) continue;
 
         events.push({
-          uid: uid || `event-${i}`,
+          uid: `${vevent.uid}-${instance.start.getTime()}`,
           summary,
-          description: description || undefined,
-          location: location || undefined,
-          start,
-          end,
+          description: asString(vevent.description) || undefined,
+          location: asString(vevent.location) || undefined,
+          start: instance.start,
+          end: instance.end,
+          isFullDay: instance.isFullDay,
+          source: feed.source,
         });
       }
     }
-
-    const now = new Date();
-    return events
-      .filter((e) => e.start >= now)
-      .sort((a, b) => a.start.getTime() - b.start.getTime());
-  } catch {
+    return events;
+  } catch (error) {
+    console.error(`Failed to load ${feed.source} calendar feed:`, error);
     return [];
   }
+}
+
+export async function getCalendarEvents(): Promise<CalendarEvent[]> {
+  const results = await Promise.all(FEEDS.map(fetchFeed));
+  return results
+    .flat()
+    .sort((a, b) => a.start.getTime() - b.start.getTime());
 }

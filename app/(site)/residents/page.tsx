@@ -141,7 +141,7 @@ export default function HistoryPage() {
     <div>
       <SideTimeline items={TIMELINE_ITEMS} />
 
-      <section className="pt-32 pb-6">
+      <section className="pt-40 pb-14">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
             Residents

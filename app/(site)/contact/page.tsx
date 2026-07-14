@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
+import PastNewsletters from "@/components/PastNewsletters";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,10 +17,10 @@ const BOARD_EXECUTIVE = [
 ] as const;
 
 const BOARD_MEMBERS = [
+  "Bobby Giangeruso",
   "Joyce Dyrector",
   "Rick Foulkes",
   "Stef Garden",
-  "Bobby Giangeruso",
   "Che Johnson",
   "Richard Loyd",
   "Paul Norling",
@@ -30,14 +32,11 @@ const BOARD_MEMBERS = [
 export default function ContactPage() {
   return (
     <div>
-      <section className="pt-32 pb-6">
+      <section className="pt-40 pb-14">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h1 className="py-3 text-5xl font-medium uppercase tracking-tight sm:text-6xl lg:text-7xl">
             Contact
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-cream">
-            Reach out to the Hollywood Heights Association
-          </p>
         </div>
       </section>
 
@@ -52,61 +51,14 @@ export default function ContactPage() {
               We send updates on neighborhood issues, events, and community happenings.
             </p>
 
-            <form className="mt-10 space-y-5" action="https://formspree.io/f/placeholder" method="POST">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="first-name" className="mb-1 block text-sm tracking-wider text-cream">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="first-name"
-                    name="first_name"
-                    autoComplete="given-name"
-                    required
-                    placeholder="First name"
-                    className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="last-name" className="mb-1 block text-sm tracking-wider text-cream">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="last-name"
-                    name="last_name"
-                    autoComplete="family-name"
-                    required
-                    placeholder="Last name"
-                    className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="email" className="mb-1 block text-sm tracking-wider text-cream">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  required
-                  spellCheck={false}
-                  placeholder="your@email.com"
-                  className="w-full rounded-[16px] border border-cream/18 bg-transparent px-4 py-3 text-sm text-cream placeholder:text-cream focus:border-cream focus:outline-none focus:ring-1 focus:ring-cream"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
-              >
-                Subscribe
-              </button>
-            </form>
+            <a
+              href="https://lp.constantcontactpages.com/sl/fIheEaU"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-[16px] bg-cream px-8 py-3 text-sm font-bold uppercase text-hollywood-blue transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-hollywood-blue"
+            >
+              Subscribe
+            </a>
           </div>
 
           <div>
@@ -172,6 +124,10 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <Suspense fallback={null}>
+        <PastNewsletters />
+      </Suspense>
 
     </div>
   );

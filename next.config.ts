@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // node-ical's temporal-polyfill breaks when bundled; run it as a plain
+  // Node.js dependency on the server instead.
+  serverExternalPackages: ["node-ical"],
   images: {
     remotePatterns: [
       {
