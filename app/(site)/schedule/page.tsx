@@ -44,7 +44,7 @@ export default async function EventsPage() {
               <a
                 key={cal.label}
                 href={cal.href}
-                className="rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+                className="rounded-[10px] bg-cream/6 px-4 py-2 text-xs font-bold uppercase text-cream transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
               >
                 {cal.label}
               </a>

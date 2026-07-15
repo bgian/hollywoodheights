@@ -273,7 +273,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
               setPopover(null);
               setView({ year: todayYear, monthIndex: todayMonth - 1 });
             }}
-            className="rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            className="rounded-[10px] bg-cream/6 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
           >
             Today
           </button>
@@ -284,7 +284,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
               onClick={() => setFiltersOpen((open) => !open)}
               aria-expanded={filtersOpen}
               aria-haspopup="true"
-              className="flex items-center gap-2 rounded-[10px] border border-cream/30 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+              className="flex items-center gap-2 rounded-[10px] bg-cream/6 px-4 py-1.5 text-xs font-bold uppercase text-cream transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
             >
               Calendars
               <svg
@@ -358,7 +358,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
             type="button"
             onClick={() => changeMonth(-1)}
             aria-label="Previous month"
-            className="rounded-[10px] border border-cream/30 px-3 py-1.5 transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            className="rounded-[10px] bg-cream/6 px-3 py-1.5 transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
           >
             <ArrowIcon src="/left-arrow.svg" />
           </button>
@@ -366,7 +366,7 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
             type="button"
             onClick={() => changeMonth(1)}
             aria-label="Next month"
-            className="rounded-[10px] border border-cream/30 px-3 py-1.5 transition-colors duration-150 hover:border-cream/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
+            className="rounded-[10px] bg-cream/6 px-3 py-1.5 transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
           >
             <ArrowIcon src="/right-arrow.svg" />
           </button>
