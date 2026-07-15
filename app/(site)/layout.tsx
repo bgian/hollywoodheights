@@ -17,17 +17,17 @@ export default function SiteLayout({
       <footer className="py-8 text-center text-sm text-cream">
         <div className="mx-auto max-w-4xl px-6 flex flex-col items-center gap-6">
           <a
-            href="/newsletters/1990-Vol-9-Issue-2.pdf"
+            href="https://lp.constantcontactpages.com/sl/fIheEaU"
             target="_blank"
             rel="noopener noreferrer"
             className="group block"
           >
             <Image
-              src="/letter.png"
-              alt="Hollywood Heights Association newsletter"
-              width={300}
-              height={210}
-              className="h-auto w-[240px] transition-transform duration-300 group-hover:rotate-2"
+              src="/postcard.png"
+              alt="Hollywood Heights postcard"
+              width={800}
+              height={540}
+              className="h-auto w-[240px] rounded-lg transition-transform duration-300 group-hover:rotate-2"
             />
           </a>
           <div className="flex flex-col items-center gap-2">
