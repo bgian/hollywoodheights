@@ -17,7 +17,7 @@ export default function ThemedIllustration() {
       alt="Illustrated view of Hollywood Heights neighborhood architecture"
       width={683}
       height={678}
-      className="mx-auto mt-10 h-auto w-full max-w-[320px] sm:mt-12"
+      className="mx-auto mt-10 h-auto w-full max-w-[240px] sm:mt-12 sm:max-w-[320px]"
       style={themeColor === "canyon" ? { filter: FILTER_DARK } : undefined}
       priority
     />

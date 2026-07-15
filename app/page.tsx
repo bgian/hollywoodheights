@@ -23,7 +23,7 @@ export default function HomePage() {
             Intimate &amp; Hidden
           </p>
 
-          <Logo className="w-full max-w-[400px]" />
+          <Logo className="w-full max-w-[300px] sm:max-w-[400px]" />
 
           <p className="mt-5 text-center text-base uppercase sm:mt-6 sm:text-lg">
             Since 1902
