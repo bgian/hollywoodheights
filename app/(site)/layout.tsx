@@ -55,7 +55,7 @@ export default function SiteLayout({
               </Link>
             </div>
             <span className="text-sm text-cream">
-              Identity designed by{" "}
+              Designed by{" "}
               <a
                 href="https://bobby.so"
                 target="_blank"
