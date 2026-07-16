@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Hollywood Heights",
   description:
     "Hollywood Heights (\"HiHo\") is where old Hollywood meets old Europe. Charming Tuscan style walk streets and rolling hills above the Hollywood Bowl.",
-  metadataBase: new URL("https://hollywoodheights-alpha.vercel.app"),
+  metadataBase: new URL("https://www.hollywoodheights.org"),
   openGraph: {
     title: "Hollywood Heights",
     description:
