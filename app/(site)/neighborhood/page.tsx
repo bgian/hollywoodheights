@@ -49,7 +49,7 @@ const OUR_NEIGHBORHOOD: ContentSection = {
     <>Hollywood Heights is bounded by {extLink("https://www.hollywoodbowl.com/", "The Hollywood Bowl")} on the north, {extLink("https://en.wikipedia.org/wiki/Highland_Avenue_(Los_Angeles)", "Highland Avenue")} on the east, {extLink("http://www.outpostestates.com/", "Outpost Estates")} on the west, and {extLink("https://en.wikipedia.org/wiki/Franklin_Avenue_(Los_Angeles)", "Franklin Avenue")} on the south.</>,
   ],
   images: [
-    { src: "/HighTower-1.jpg", alt: "Drawing of Hollywood Heights neighborhood by Annie Kelly — High Tower and surrounding hillside homes" },
+    { src: "/images/hightower-illustration.png", alt: "Illustration of Hollywood Heights — High Tower and surrounding hillside homes" },
   ],
   subsections: [
     {
